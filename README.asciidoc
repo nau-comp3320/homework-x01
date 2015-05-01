@@ -1,0 +1,92 @@
+homework-x01: Programming with Clojure
+======================================
+
+Due date:: 2015-05-12 11:30 CST
+
+
+Objectives
+----------
+
+When you have completed this homework, you should be familiar with:
+
+* How to write simple programs using Clojure
+* Creating lazy sequences in Clojure
+* Writing simple macros in Clojure
+
+Procedure
+---------
+
+This assignment is broken into four parts.
+
+1. xref:_fizzbuzz[Fizzbuzz] is a very simple code kata.
+2. xref:_the_bowling_game_kata[The bowling game kata] is a less simple kata.
+3. xref:_polygonal_numbers[Polygonal numbers] is an exercise in creating a lazy sequence.
+4. xref:_infix[Infix] is an exercise in creating a simple macro.
+
+There are test suites for all of these exercies, which can be run using
+https://cursiveclojure.com/userguide/testing.html[Cursive Clojure’s test
+support], running the *Tests* configuration from within IntelliJ IDEA, or
+simply running `lein test` from the console.
+
+
+=== Fizzbuzz
+
+This is a very simple exercise.  You will implement the function `fizzbuzz`
+takes a single number as an argument and returns one of the following values:
+
+`:fizz!`:: When the number is divisible by 3
+`:buzz!`:: When the number is divisible by 5
+`:fizzbuzz!`:: When the number is divisible by both 3 and 5
+the number itself:: In all other cases
+
+
+=== The bowling game kata
+
+http://www.butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata[The bowling
+game kata] requires you to write a program that scores a bowling game.  It
+helps you build a program to determine the score from a game of
+https://en.wikipedia.org/wiki/Ten-pin_bowling[ten-pin bowling].  You can get
+more information about how such a game is scored
+https://en.wikipedia.org/wiki/Ten-pin_bowling#Scoring[from here].
+
+In the implementation for this exercises, you will neeed to implement three
+functions:
+
+`new-game`::
+  Returns a data structure that contains the state for an initial game.
+`roll`::
+  Takes a game and a number representing the number of pins that was knocked
+  down.  This function should return a new game state.
+`score`::
+  Takes a game state and returns the final score.
+
+There are five tests that are performed, and you can update your implementation
+to handle each test one at a time:
+
+1. A gutter game, where no pins are knocked down.
+2. All ones, a game where each roll knocks down one pin.
+3. One spare, a game where a spare is scored in the first frame.
+4. One strike, a game where a strike is scored in the first frame.
+5. Perfect game, a game with twelve consecutive strikes.
+
+
+=== Polygonal numbers
+
+In this exercise, you will be creating lazy sequences of
+https://en.wikipedia.org/wiki/Polygonal_number[Polygonal numbers].  You will
+first implement a function, `polygonal-number` that will calculate the nth
+s-gonal number.  Next, you will implement `polygonal-seq` which will generate a
+lazy sequence of all of the s-gonal numbers.  You may find
+https://github.com/nau-comp3320/primes/blob/master/src/primes/core.clj[the
+primes example from class helpful].
+
+
+=== Infix
+
+In this exercise, you will create a macro called `infix`.  In its most basic
+form, it will convert an expression like `(infix 1 + 2)` to `(+ 1 2)`.  Do not
+worry about order of operations, `infix` will always only take three arguments.
+However, sometimes, these arguments may be expressions themselves.  For
+example, `(infix (1 + 2) * 3)` should become `(* (+ 1 2) 3)`.  For these cases,
+`infix` is recursive.  Remember that you should be able to check if an argument
+is a list by using the `list?` predicate.
